@@ -1,0 +1,13 @@
+Quests
+-functional router
+-make RouterBase class to mount unmount
+-inject html file in js (login html in login.page.js)
+-dashboard with links to all pages
+-display available links in dashboard depending on user type (check the user type and display only the available links)
+-Use proxies to give acces to certain pages depending on the user type (admin, regular, visitor)
+-if regular user tries to go to "/users" get a message - access denided
+
+
+Done
+initiate webpack
+functional router with multiple pages - done but need SPA

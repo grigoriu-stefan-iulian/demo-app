@@ -1,0 +1,16 @@
+Creational
+-constructor
+-module
+-factory
+-singleton
+
+
+Structural
+-decorator
+-facade
+-flyweight
+
+Behavioral
+-observer
+-mediator
+-command
