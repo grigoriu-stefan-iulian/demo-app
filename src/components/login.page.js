@@ -1,24 +1,24 @@
-//import * as loginHtml from './login.html';
-/*
+//require('login.html');
+//import loginHtml from "html-loader!./login.html";
+import RouteBase from "../routers/route-base";
+
 export class LoginPage extends RouteBase {
   constructor() {
     super();
-    
+    //super.mount(loginHtml);
     // events = new Events();
 
-    this.someCoolEventCallback = this.someCoolEventCallback.bind(this);
+    // this.someCoolEventCallback = this.someCoolEventCallback.bind(this);
   }
-
-  mount() {
-    super.mount(loginHtml);
-
+  /*
     this.events.add({
       target: element,
-      type: 'click',
+      type: "click",
       handlers: this.someCoolEventCallback
-    })
-    // add events
-  }
+    });
+    */
+  // add events
+  //}
 
   // unmount() {
   //   this.events.remove();
@@ -29,4 +29,3 @@ export class LoginPage extends RouteBase {
     this.property = 1;
   }
 }
-*/

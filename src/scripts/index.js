@@ -1,28 +1,22 @@
-'use strict';
-
-import '../styles/index.scss';
-import 'normalize.css/normalize.css';
+"use strict";
+import "../styles/index.scss";
+import "normalize.css/normalize.css";
 //import { pasuser } from './form-validation';
-import { routes } from '../routers/routes';
+import { routes } from "../routers/routes";
 
-//const contentDiv = document.getElementById('app');
-//contentDiv.innerHTML = routes[window.location.pathname];
-console.log(window.location.pathname);
-console.log(routes[window.location.pathname]);
-
-document.addEventListener('DOMContentLoaded', () => {
-  routes[window.location.pathname];
+document.addEventListener("DOMContentLoaded", () => {
+ routes[window.location.pathname]();
 });
 
-//let page = new routes[window.location.hash];
+//let page = routes[window.location.hash];
 //page.mount();
-/*
+
 window.onhashchange = () => {
- page.unmount();
- page = new Routes[window.location.hash];
- page.mount();
+  // page.unmount();
+  //page =
+  routes[window.location.hash || window.location.pathname]();
+  // page.mount();
 };
-*/
 
 /*
 let onNavItemClick = (pathName) => {

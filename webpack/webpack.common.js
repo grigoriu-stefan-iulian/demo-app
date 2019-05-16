@@ -24,19 +24,19 @@ module.exports = {
     ]),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, "../src/index.html")
-    })
+    }),
     // new HtmlWebpackPlugin({
     //   template: Path.resolve(__dirname, "../src/pages/dashboard.html"),
     //   inject: true,
     //   chunks: ["all"],
     //   filename: "dashboard.html"
     // }),
-    // new HtmlWebpackPlugin({
-    //   template: Path.resolve(__dirname, "../src/pages/login.html"),
-    //   inject: true,
-    //   chunks: ["all"],
-    //   filename: "login.html"
-    // }),
+    new HtmlWebpackPlugin({
+      template: Path.resolve(__dirname, "../src/pages/login.html"),
+      inject: true,
+      chunks: ["all"],
+      filename: "login.html"
+    }),
     // new HtmlWebpackPlugin({
     //   template: Path.resolve(__dirname, "../src/pages/logout.html"),
     //   inject: true,
@@ -75,6 +75,15 @@ module.exports = {
           loader: "eslint-loader",
           options: {
             name: "[path][name].[ext]"
+          }
+        }
+      },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [':data-src']
           }
         }
       }
