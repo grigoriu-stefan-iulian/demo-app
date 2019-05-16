@@ -1,5 +1,5 @@
-import * as loginHtml from './login.html';
-
+//import * as loginHtml from './login.html';
+/*
 export class LoginPage extends RouteBase {
   constructor() {
     super();
@@ -29,3 +29,4 @@ export class LoginPage extends RouteBase {
     this.property = 1;
   }
 }
+*/

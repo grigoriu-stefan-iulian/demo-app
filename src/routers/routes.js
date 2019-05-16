@@ -1,9 +1,10 @@
 import { loginForm } from '../components/login.page';
-import { homePage } from '../components/home.page';
+import { HomePage } from '../components/home.page';
 
-export const Routes = {
-    '/': homePage,
-    '/login': loginForm, // new Router(loginHtml)
+export const routes = {
+   // '/': homePage,
+   '/': new HomePage(document.getElementById('app')),
+   // '/login': loginForm, // new Router(loginHtml)
    // '/logout': logoutPage,
    // '/register': registerForm,
    // '/dashboard': dashboarPage,
