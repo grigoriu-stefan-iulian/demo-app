@@ -1,5 +1,3 @@
-
-
 export default class RouteBase {
   constructor(htmlComponent) {
     this.container = document.getElementById("app");

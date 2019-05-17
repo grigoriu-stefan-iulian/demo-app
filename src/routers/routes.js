@@ -1,15 +1,12 @@
-//import { LoginPage } from "../components/login.page";
-//import { HomePage } from "../components/home.page";
 import RouteBase from "./route-base";
-import loginHtml from "html-loader!./login.html";
-import homepageHtml from "html-loader!./homepage.html";
-import logoutHtml from "html-loader!./logout.html";
-import registerHtml from "html-loader!./register.html";
-import dashboardHtml from "html-loader!./dashboard.html";
-import usersHtml from "html-loader!./users.html";
+import loginHtml from "../pages/login.html";
+import homepageHtml from "../pages/homepage.html";
+import logoutHtml from "../pages/logout.html";
+import registerHtml from "../pages/register.html";
+import dashboardHtml from "../pages/dashboard.html";
+import usersHtml from "../pages/users.html";
 
 export const routes = {
-  // '/': homePage,
   "/"() {
     new RouteBase(homepageHtml);
   },
@@ -27,5 +24,5 @@ export const routes = {
   },
   "#users"() {
     new RouteBase(usersHtml);
-  },
+  }
 };
