@@ -1,31 +1,20 @@
-//require('login.html');
-//import loginHtml from "html-loader!./login.html";
 import RouteBase from "../routers/route-base";
+import Events from "./events";
 
-export class LoginPage extends RouteBase {
-  constructor() {
-    super();
-    //super.mount(loginHtml);
-    // events = new Events();
-
-    // this.someCoolEventCallback = this.someCoolEventCallback.bind(this);
-  }
-  /*
+class LoginPage extends RouteBase {
+  constructor(htmlToRender) {
+    super(htmlToRender);
+    this.events = new Events();
     this.events.add({
-      target: element,
       type: "click",
-      handlers: this.someCoolEventCallback
+      target: "alert-button",
+      handler: this.someCoolEventCallback
     });
-    */
-  // add events
-  //}
-
-  // unmount() {
-  //   this.events.remove();
-  //  // remove events;
-  // }
+  }
 
   someCoolEventCallback() {
-    this.property = 1;
+    alert("Working Event");
   }
 }
+
+export default LoginPage;

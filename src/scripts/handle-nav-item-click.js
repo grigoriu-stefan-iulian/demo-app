@@ -1,5 +1,9 @@
-import { routes } from "../routers/routes";
+import routes from "../routers/routes";
 
-export const handleNavItemClick = () => {
-  routes[window.location.hash || "/"]();
+const handleNavItemClick = () => {
+  window.location.hash === ""
+    ? routes["#dashboard"]()
+    : routes[window.location.hash]();
 };
+
+export default handleNavItemClick;
