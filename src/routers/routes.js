@@ -8,22 +8,26 @@ import LoginPage from "../components/login.page";
 import RegisterPage from "../components/register.page";
 import Dashboard from "../components/dashboard";
 import LogoutPage from "../components/logout.page";
+import notfoundHtml from "../pages/notfound.html";
 
 const routes = {
-  "#login"() {
+  login() {
     new LoginPage(loginHtml);
   },
-  "#logout"() {
+  logout() {
     new LogoutPage(logoutHtml);
   },
-  "#register"() {
+  register() {
     new RegisterPage(registerHtml);
   },
-  "#dashboard"() {
+  dashboard() {
     new Dashboard(dashboardHtml);
   },
-  "#users"() {
+  users() {
     new RouteBase(usersHtml);
+  },
+  notfound() {
+    new RouteBase(notfoundHtml);
   }
 };
 
