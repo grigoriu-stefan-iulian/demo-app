@@ -15,6 +15,7 @@ class RegisterPage extends RouteBase {
   storeUsers(e) {
     e.preventDefault();
     let store = JSON.parse(localStorage.getItem("users")) || [];
+    const errorEl = document.getElementById("registration-error");
     const user = {
       fName: e.target[0].value,
       lName: e.target[1].value,
@@ -26,12 +27,11 @@ class RegisterPage extends RouteBase {
     store.find(el => el.email === user.email) === undefined
       ? (() => {
           store.push(user);
-          document.getElementById("registration-error").innerHTML = "";
+          errorEl.innerHTML = "";    
+          localStorage.setItem("users", JSON.stringify(store));
         })()
-      : (document.getElementById("registration-error").innerHTML =
-          "This email is already in use");
+      : (errorEl.innerHTML = "This email is already in use.");
 
-    localStorage.setItem("users", JSON.stringify(store));
   }
 }
 

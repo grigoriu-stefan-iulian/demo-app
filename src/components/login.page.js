@@ -21,7 +21,8 @@ class LoginPage extends RouteBase {
     const loginPassword = e.target[1].value;
     const store = JSON.parse(localStorage.getItem("users")) || [];
     const user = store.filter(
-      el => el.email === loginEmail && el.password === loginPassword
+      el =>
+        el.email === loginEmail && el.password === loginPassword && el.enabled
     );
     user[0] === undefined
       ? (document.getElementById("error-message").innerHTML =
