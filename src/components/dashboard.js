@@ -7,7 +7,6 @@ class Dashboard extends RouteBase {
   }
   handleUserName() {
     const user = JSON.parse(sessionStorage.getItem("user"));
-    //debugger;
     const userName = user === null ? "Visitor" : user.fName;
     document.getElementById("name-container").innerHTML = userName;
   }
