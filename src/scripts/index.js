@@ -1,12 +1,12 @@
 "use strict";
 import "../styles/index.scss";
 import "normalize.css/normalize.css";
-import handleNavItemClick from "./handle-nav-item-click";
+import handleRouting from "./handle-routing";
 
 document.addEventListener("DOMContentLoaded", () => {
-  handleNavItemClick();
+  handleRouting();
 });
 
 window.onhashchange = () => {
-  handleNavItemClick();
+  handleRouting();
 };

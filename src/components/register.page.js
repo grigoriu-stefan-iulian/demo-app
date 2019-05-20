@@ -20,9 +20,17 @@ class RegisterPage extends RouteBase {
       lName: e.target[1].value,
       email: e.target[2].value,
       password: e.target[3].value,
-      enabled: false
+      enabled: false,
+      role: "Regular"
     };
-    store.push(user);
+    store.find(el => el.email === user.email) === undefined
+      ? (() => {
+          store.push(user);
+          document.getElementById("registration-error").innerHTML = "";
+        })()
+      : (document.getElementById("registration-error").innerHTML =
+          "This email is already in use");
+
     localStorage.setItem("users", JSON.stringify(store));
   }
 }
