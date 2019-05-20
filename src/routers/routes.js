@@ -7,13 +7,14 @@ import usersHtml from "../pages/users.html";
 import LoginPage from "../components/login.page";
 import RegisterPage from "../components/register.page";
 import Dashboard from "../components/dashboard";
+import LogoutPage from "../components/logout.page";
 
 const routes = {
   "#login"() {
     new LoginPage(loginHtml);
   },
   "#logout"() {
-    new RouteBase(logoutHtml);
+    new LogoutPage(logoutHtml);
   },
   "#register"() {
     new RegisterPage(registerHtml);
