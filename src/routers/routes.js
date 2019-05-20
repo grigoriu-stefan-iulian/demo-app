@@ -6,6 +6,7 @@ import dashboardHtml from "../pages/dashboard.html";
 import usersHtml from "../pages/users.html";
 import LoginPage from "../components/login.page";
 import RegisterPage from "../components/register.page";
+import Dashboard from "../components/dashboard";
 
 const routes = {
   "#login"() {
@@ -18,7 +19,7 @@ const routes = {
     new RegisterPage(registerHtml);
   },
   "#dashboard"() {
-    new RouteBase(dashboardHtml);
+    new Dashboard(dashboardHtml);
   },
   "#users"() {
     new RouteBase(usersHtml);
