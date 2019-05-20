@@ -9,6 +9,7 @@ import RegisterPage from "../components/register.page";
 import Dashboard from "../components/dashboard";
 import LogoutPage from "../components/logout.page";
 import notfoundHtml from "../pages/notfound.html";
+import UsersPage from "../components/users.page";
 
 const routes = {
   login() {
@@ -24,7 +25,7 @@ const routes = {
     new Dashboard(dashboardHtml);
   },
   users() {
-    new RouteBase(usersHtml);
+    new UsersPage(usersHtml);
   },
   notfound() {
     new RouteBase(notfoundHtml);

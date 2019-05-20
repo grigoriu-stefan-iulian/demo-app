@@ -14,21 +14,18 @@ class LoginPage extends RouteBase {
 
   handleLogin(e) {
     e.preventDefault();
-    // check if email and pasword match a user in localStorage
-    //  if yes, push the user data to sessionStorage
-    //  if not, fill a span with error message
     const loginEmail = e.target[0].value;
     const loginPassword = e.target[1].value;
     const store = JSON.parse(localStorage.getItem("users")) || [];
-    const user = store.filter(
+    const user = store.find(
       el =>
         el.email === loginEmail && el.password === loginPassword && el.enabled
     );
-    user[0] === undefined
+    user === undefined
       ? (document.getElementById("error-message").innerHTML =
           "Wrong Email or Password")
       : (() => {
-          sessionStorage.setItem("user", JSON.stringify(user[0]));
+          sessionStorage.setItem("user", JSON.stringify(user));
           location.hash = "#dashboard";
         })();
   }
