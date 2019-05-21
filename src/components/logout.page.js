@@ -1,5 +1,6 @@
 import RouteBase from "../routers/route-base";
 import Events from "./events";
+import store from "../store/store";
 
 class LogoutPage extends RouteBase {
   constructor(htmlPage) {
@@ -12,7 +13,7 @@ class LogoutPage extends RouteBase {
     });
   }
   handleLogout() {
-    sessionStorage.removeItem("user");
+    store.removeSession();
     location.hash = "#dashboard";
   }
 }

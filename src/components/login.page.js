@@ -26,7 +26,7 @@ class LoginPage extends RouteBase {
       ? (document.getElementById("error-message").innerHTML =
           "Wrong Email or Password")
       : (() => {
-          sessionStorage.setItem("user", JSON.stringify(user));
+          store.setSession(user);
           location.hash = "#dashboard";
         })();
   }

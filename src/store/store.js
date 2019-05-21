@@ -3,9 +3,17 @@ const store = {
     return JSON.parse(localStorage.getItem("users")) || [];
   },
   setStore(users) {
-    return localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users", JSON.stringify(users));
   },
-  updateStore() {}
+  getSession() {
+    return JSON.parse(sessionStorage.getItem("user"));
+  },
+  setSession(user) {
+    sessionStorage.setItem("user", JSON.stringify(user));
+  },
+  removeSession() {
+    sessionStorage.removeItem("user");
+  }
 };
 
 export default store;
