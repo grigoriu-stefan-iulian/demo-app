@@ -1,5 +1,6 @@
 import RouteBase from "../routers/route-base";
 import Events from "./events";
+import store from "../store/store";
 
 class LoginPage extends RouteBase {
   constructor(htmlToRender) {
@@ -16,8 +17,8 @@ class LoginPage extends RouteBase {
     e.preventDefault();
     const loginEmail = e.target[0].value;
     const loginPassword = e.target[1].value;
-    const store = JSON.parse(localStorage.getItem("users")) || [];
-    const user = store.find(
+    const users = store.getStore();
+    const user = users.find(
       el =>
         el.email === loginEmail && el.password === loginPassword && el.enabled
     );

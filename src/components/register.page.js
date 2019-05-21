@@ -1,5 +1,6 @@
 import RouteBase from "../routers/route-base";
 import Events from "./events";
+import store from "../store/store";
 
 class RegisterPage extends RouteBase {
   constructor(htmlToRender) {
@@ -14,7 +15,7 @@ class RegisterPage extends RouteBase {
 
   storeUsers(e) {
     e.preventDefault();
-    let store = JSON.parse(localStorage.getItem("users")) || [];
+    const users = store.getStore();
     const errorEl = document.getElementById("registration-error");
     const user = {
       fName: e.target[0].value,
@@ -24,11 +25,11 @@ class RegisterPage extends RouteBase {
       role: "Regular",
       enabled: false
     };
-    store.find(el => el.email === user.email) === undefined
+    users.find(el => el.email === user.email) === undefined
       ? (() => {
-          store.push(user);
+          users.push(user);
           errorEl.innerHTML = "";
-          localStorage.setItem("users", JSON.stringify(store));
+          store.setStore(users);
         })()
       : (errorEl.innerHTML = "This email is already in use.");
   }
