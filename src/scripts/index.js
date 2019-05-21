@@ -26,7 +26,7 @@ for (let i = 0; i < 25; i++) {
     fName: "Stefan",
     lName: "Grigoriu",
     email: `stefan${i}@gmail.com`,
-    password: 123,
+    password: "123",
     role: "Regular",
     enabled: false
   });

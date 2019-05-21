@@ -15,16 +15,18 @@ class LoginPage extends RouteBase {
 
   handleLogin(e) {
     e.preventDefault();
+    const errorEl = document.getElementById("error-message");
     const loginEmail = e.target[0].value;
     const loginPassword = e.target[1].value;
     const users = store.getStore();
     const user = users.find(
-      el =>
-        el.email === loginEmail && el.password === loginPassword && el.enabled
+      el => el.email === loginEmail && el.password === loginPassword
     );
+
     user === undefined
-      ? (document.getElementById("error-message").innerHTML =
-          "Wrong Email or Password")
+      ? (errorEl.innerHTML = "Wrong Email or Password")
+      : user.enabled === false
+      ? (errorEl.innerHTML = "Your account is not enabled yet.")
       : (() => {
           store.setSession(user);
           location.hash = "#dashboard";
