@@ -1,11 +1,10 @@
 import RouteBase from "../routers/route-base";
-import renderUsers from "../shares/render-users";
+import { RenderUsers } from "../utils/utils";
+//import store from "../store/store";
 
-class UsersPage extends RouteBase {
+export default class UsersPage extends RouteBase {
   constructor(htmlPage) {
     super(htmlPage);
-    renderUsers();
+    new RenderUsers();
   }
 }
-
-export default UsersPage;

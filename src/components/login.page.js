@@ -1,37 +1,42 @@
+import admins from "../data/admins.json";
 import RouteBase from "../routers/route-base";
-import Events from "./events";
+import { addEvent } from "../utils/utils";
 import store from "../store/store";
 
-class LoginPage extends RouteBase {
+export default class LoginPage extends RouteBase {
   constructor(htmlToRender) {
     super(htmlToRender);
-    this.events = new Events();
-    this.events.add({
+    this.users = [...admins, ...store.getStore()];
+    this.errorEl = document.getElementById("error-message");
+    this.user = {};
+    this.handleLogin = this.handleLogin.bind(this);
+    addEvent({
       type: "submit",
       target: "login-submit",
       handler: this.handleLogin
     });
   }
-
   handleLogin(e) {
     e.preventDefault();
-    const errorEl = document.getElementById("error-message");
-    const loginEmail = e.target[0].value;
-    const loginPassword = e.target[1].value;
-    const users = store.getStore();
-    const user = users.find(
-      el => el.email === loginEmail && el.password === loginPassword
+    const loginEmail = e.target[0].value,
+      loginPassword = e.target[1].value;
+    this.getUser(loginEmail, loginPassword);
+    this.handleUserValidation();
+  }
+  getUser(email, password) {
+    this.user = this.users.find(
+      el => el.email === email && el.password === password
     );
-
-    user === undefined
-      ? (errorEl.innerHTML = "Wrong Email or Password")
-      : user.enabled === false
-      ? (errorEl.innerHTML = "Your account is not enabled yet.")
-      : (() => {
-          store.setSession(user);
-          location.hash = "#dashboard";
-        })();
+  }
+  handleUserValidation() {
+    this.user === undefined
+      ? (this.errorEl.innerHTML = "Wrong Email or Password")
+      : this.user.enabled === false
+      ? (this.errorEl.innerHTML = "Your account is not enabled yet.")
+      : this.handleLoginSession();
+  }
+  handleLoginSession() {
+    store.setSession(this.user);
+    location.hash = "#dashboard";
   }
 }
-
-export default LoginPage;

@@ -6,7 +6,7 @@ import dashboardHtml from "../pages/dashboard.html";
 import usersHtml from "../pages/users.html";
 import LoginPage from "../components/login.page";
 import RegisterPage from "../components/register.page";
-import Dashboard from "../components/dashboard";
+import Dashboard from "../components/dashboard.page";
 import LogoutPage from "../components/logout.page";
 import notfoundHtml from "../pages/notfound.html";
 import UsersPage from "../components/users.page";

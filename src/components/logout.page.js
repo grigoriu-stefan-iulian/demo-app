@@ -1,12 +1,11 @@
 import RouteBase from "../routers/route-base";
-import Events from "./events";
+import { addEvent } from "../utils/utils";
 import store from "../store/store";
 
-class LogoutPage extends RouteBase {
+export default class LogoutPage extends RouteBase {
   constructor(htmlPage) {
     super(htmlPage);
-    this.events = new Events();
-    this.events.add({
+    addEvent({
       target: "logout-button",
       handler: this.handleLogout,
       type: "click"
@@ -17,5 +16,3 @@ class LogoutPage extends RouteBase {
     location.hash = "#dashboard";
   }
 }
-
-export default LogoutPage;

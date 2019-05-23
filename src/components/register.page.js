@@ -1,22 +1,21 @@
 import RouteBase from "../routers/route-base";
-import Events from "./events";
+import { addEvent } from "../utils/utils";
 import store from "../store/store";
 
-class RegisterPage extends RouteBase {
+export default class RegisterPage extends RouteBase {
   constructor(htmlToRender) {
     super(htmlToRender);
-    this.events = new Events();
-    this.events.add({
+    this.users = store.getStore();
+    this.errorEl = document.getElementById("registration-error");
+    this.storeUsers = this.storeUsers.bind(this);
+    addEvent({
       type: "submit",
       target: "register-form",
       handler: this.storeUsers
     });
   }
-
   storeUsers(e) {
     e.preventDefault();
-    const users = store.getStore();
-    const errorEl = document.getElementById("registration-error");
     const user = {
       fName: e.target[0].value,
       lName: e.target[1].value,
@@ -25,14 +24,16 @@ class RegisterPage extends RouteBase {
       role: "Regular",
       enabled: false
     };
-    users.find(el => el.email === user.email) === undefined
-      ? (() => {
-          users.push(user);
-          errorEl.innerHTML = "";
-          store.setStore(users);
-        })()
-      : (errorEl.innerHTML = "This email is already in use.");
+    this.handleEmailValidation(user);
+  }
+  handleEmailValidation(user) {
+    this.users.find(el => el.email === user.email) === undefined
+      ? this.handleUserRegistration(user)
+      : (this.errorEl.innerHTML = "This email is already in use.");
+  }
+  handleUserRegistration(user) {
+    this.users.push(user);
+    this.errorEl.innerHTML = "";
+    store.setStore(this.users);
   }
 }
-
-export default RegisterPage;
