@@ -24,14 +24,14 @@ export default class RegisterPage extends RouteBase {
       role: "Regular",
       enabled: false
     };
-    this.handleEmailValidation(user);
+    this.emailValidation(user);
   }
-  handleEmailValidation(user) {
+  emailValidation(user) {
     this.users.find(el => el.email === user.email) === undefined
-      ? this.handleUserRegistration(user)
+      ? this.userRegistration(user)
       : (this.errorEl.innerHTML = "This email is already in use.");
   }
-  handleUserRegistration(user) {
+  userRegistration(user) {
     this.users.push(user);
     this.errorEl.innerHTML = "";
     store.setStore(this.users);

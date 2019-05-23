@@ -21,21 +21,21 @@ export default class LoginPage extends RouteBase {
     const loginEmail = e.target[0].value,
       loginPassword = e.target[1].value;
     this.getUser(loginEmail, loginPassword);
-    this.handleUserValidation();
+    this.validateUser();
   }
   getUser(email, password) {
     this.user = this.users.find(
       el => el.email === email && el.password === password
     );
   }
-  handleUserValidation() {
+  validateUser() {
     this.user === undefined
       ? (this.errorEl.innerHTML = "Wrong Email or Password")
       : this.user.enabled === false
       ? (this.errorEl.innerHTML = "Your account is not enabled yet.")
-      : this.handleLoginSession();
+      : this.setLoginSession();
   }
-  handleLoginSession() {
+  setLoginSession() {
     store.setSession(this.user);
     location.hash = "#dashboard";
   }

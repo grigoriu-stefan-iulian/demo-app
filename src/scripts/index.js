@@ -15,8 +15,8 @@ window.onhashchange = () => {
 
 window.addEventListener("storage", e => {
   if (e.key === "users") {
-    RenderUsers.render();
+    new RenderUsers();
   }
 });
 
-// generateDummyUsers();
+//  generateDummyUsers();
