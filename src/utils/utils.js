@@ -13,10 +13,14 @@ export class RenderUsers {
       let tableRow = document.createElement("tr");
       Object.values(user).forEach((prop, i) => {
         if (i === 5) {
-          const userState = prop === false ? "Enable" : "Disable",
-            enableButton = this.createButton(userState, "enable-button", () => {
-              this.enableUser(user);
-            }),
+          const buttonContent = prop === false ? "Enable" : "Disable",
+            enableButton = this.createButton(
+              buttonContent,
+              "enable-button",
+              () => {
+                this.enableUser(this.users, user);
+              }
+            ),
             deleteButton = this.createButton("Delete", "delete-button", () => {
               this.deleteUser(this.users, j);
             });
@@ -30,12 +34,12 @@ export class RenderUsers {
       this.table.appendChild(tableRow);
     });
   }
-  createButton(value, classes, handler) {
+  createButton(content, classes, eventHandler) {
     const button = document.createElement("button"),
       tableDataEl = document.createElement("td");
-    button.innerHTML = value;
+    button.innerHTML = content;
     button.classList.add("button", classes);
-    button.addEventListener("click", handler);
+    button.addEventListener("click", eventHandler);
     tableDataEl.appendChild(button);
     return tableDataEl;
   }
@@ -44,13 +48,13 @@ export class RenderUsers {
     tableData.innerHTML = el;
     return tableData;
   }
-  enableUser(user) {
+  enableUser(users, user) {
     user.enabled = !user.enabled;
-    this.updateStore(this.users);
+    this.updateStore(users);
   }
   deleteUser(users, index) {
     users.splice(index, 1);
-    this.updateStore(this.users);
+    this.updateStore(users);
   }
   updateStore(users) {
     store.setStore(users);
@@ -76,7 +80,7 @@ export const generateDummyUsers = () => {
       lName: "Doe",
       email: `stefan${i}@gmail.com`,
       password: "123",
-      role: "Regular",
+      role: "regular",
       enabled: false
     });
   }

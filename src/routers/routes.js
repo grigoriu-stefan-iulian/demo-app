@@ -10,6 +10,7 @@ import Dashboard from "../components/dashboard.page";
 import LogoutPage from "../components/logout.page";
 import notfoundHtml from "../pages/notfound.html";
 import UsersPage from "../components/users.page";
+import store from "../store/store";
 
 const routes = {
   login() {
@@ -32,4 +33,25 @@ const routes = {
   }
 };
 
-export default routes;
+const proxyHandler = {
+  get(routes, prop) {
+    const session = store.getSession();
+    try {
+      if (session.role === "admin") {
+        return routes[prop];
+      } else if (session.role === "regular") {
+        return prop === "dashboard" || prop === "logout"
+          ? routes[prop]
+          : routes.dashboard;
+      }
+    } catch (err) {
+      return prop === "login" || prop === "register"
+        ? routes[prop]
+        : routes.dashboard;
+    }
+  }
+};
+
+const proxyRoutes = new Proxy(routes, proxyHandler);
+
+export default proxyRoutes;
