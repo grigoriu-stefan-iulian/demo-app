@@ -1,16 +1,16 @@
 "use strict";
 import "../styles/index.scss";
 import "normalize.css/normalize.css";
-import { handleRouting } from "../utils/utils";
 import { RenderUsers } from "../utils/utils";
 import { generateDummyUsers } from "../utils/utils";
+import { router } from "../routers/routes";
 
 window.addEventListener("DOMContentLoaded", () => {
-  handleRouting();
+  router[location.hash.substr(1)]();
 });
 
 window.onhashchange = () => {
-  handleRouting();
+  router[location.hash.substr(1)]();
 };
 
 window.addEventListener("storage", e => {
@@ -19,4 +19,4 @@ window.addEventListener("storage", e => {
   }
 });
 
-  //generateDummyUsers();
+//generateDummyUsers();

@@ -35,5 +35,6 @@ export default class RegisterPage extends RouteBase {
     users.push(user);
     this.errorEl.innerHTML = "";
     store.setStore("users", users);
+    location.hash = "/#login";
   }
 }

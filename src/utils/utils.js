@@ -62,16 +62,6 @@ export class RenderUsers {
   }
 }
 
-export const handleRouting = () => {
-  try {
-    location.hash === ""
-      ? routes.dashboard()
-      : routes[location.hash.substr(1)]();
-  } catch (err) {
-    routes.notfound();
-  }
-};
-
 export const generateDummyUsers = () => {
   const users = [];
   for (let i = 0; i < 25; i++) {
@@ -92,6 +82,6 @@ export const addEvent = ({ type, target, handler } = event) => {
   targetElement.addEventListener(type, handler);
 };
 
-export const removeEvent = () => {
+export const removeEvent = (target, type, fnName) => {
   return;
 };

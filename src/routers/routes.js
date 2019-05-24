@@ -8,7 +8,6 @@ import LoginPage from "../components/login.page";
 import RegisterPage from "../components/register.page";
 import Dashboard from "../components/dashboard.page";
 import LogoutPage from "../components/logout.page";
-import notfoundHtml from "../pages/notfound.html";
 import UsersPage from "../components/users.page";
 import store from "../store/store";
 
@@ -27,9 +26,6 @@ const routes = {
   },
   users() {
     new UsersPage(usersHtml);
-  },
-  notfound() {
-    new RouteBase(notfoundHtml);
   }
 };
 
@@ -37,20 +33,17 @@ const proxyHandler = {
   get(routes, prop) {
     const session = store.getSession("user");
     if (session === null) {
-      return prop === "login" || prop === "register"
-        ? routes[prop]
-        : routes.login;
+      return prop === "register" ? routes[prop] : routes.login;
     }
     if (session.role === "admin") {
-      return routes[prop];
-    }
-    if (session.role === "regular") {
-      return prop === "dashboard" || prop === "logout"
+      return prop === "users" || prop === "logout"
         ? routes[prop]
         : routes.dashboard;
+    }
+    if (session.role === "regular") {
+      return prop === "logout" ? routes[prop] : routes.dashboard;
     }
   }
 };
 
-const proxyRoutes = new Proxy(routes, proxyHandler);
-export default proxyRoutes;
+export const router = new Proxy(routes, proxyHandler);
