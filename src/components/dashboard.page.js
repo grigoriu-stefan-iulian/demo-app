@@ -1,17 +1,24 @@
 import RouteBase from "../routers/route-base";
-import store from "../store/store";
+import { store } from "../store/store";
 
 export default class Dashboard extends RouteBase {
   constructor(htmlPage) {
     super(htmlPage);
     this.user = store.getSession("user");
-    this.handleUserName(this.user, "name-container");
+    this.nameContainer = document.getElementById("name-container");
+    this.nameContainer.innerHTML = this.user.fName;
+    this.checkIfAdmin();
   }
-  handleUserName(user, nameContainer) {
-    try {
-      document.getElementById(nameContainer).innerHTML = user.fName;
-    } catch (err) {
-      console.log("Error:", err);
+  checkIfAdmin() {
+    if (this.user.role === "admin") {
+      this.createUsersLink();
     }
+  }
+  createUsersLink() {
+    const links = document.getElementById("links"),
+      anchorEl = document.createElement("a");
+    anchorEl.setAttribute("href", "/#users");
+    anchorEl.innerHTML = " users ";
+    links.appendChild(anchorEl);
   }
 }

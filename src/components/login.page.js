@@ -1,7 +1,7 @@
 import admins from "../data/admins.json";
 import RouteBase from "../routers/route-base";
 import { addEvent } from "../utils/utils";
-import store from "../store/store";
+import { store } from "../store/store";
 
 export default class LoginPage extends RouteBase {
   constructor(htmlToRender) {

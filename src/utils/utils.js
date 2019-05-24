@@ -1,5 +1,4 @@
-import store from "../store/store";
-import routes from "../routers/routes";
+import { store } from "../store/store";
 
 export class RenderUsers {
   constructor() {
@@ -82,6 +81,9 @@ export const addEvent = ({ type, target, handler } = event) => {
   targetElement.addEventListener(type, handler);
 };
 
-export const removeEvent = (target, type, fnName) => {
+export const removeEvent = ({ target, type, fnName } = obj) => {
+  //remove the target event listener
+  target.removeEventListener(type, fnName);
+
   return;
 };

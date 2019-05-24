@@ -1,10 +1,7 @@
-import { Header } from "../components/header";
-
 export default class RouteBase {
   constructor(htmlComponent) {
     this.container = document.getElementById("app");
     this.mount(htmlComponent);
-    new Header();
   }
   mount(htmlComponent) {
     this.container.innerHTML = htmlComponent;
@@ -13,3 +10,23 @@ export default class RouteBase {
     this.container.innerHTML = "";
   }
 }
+
+//component unmount -> will also remove event listeners
+/*
+
+onhashchange remove event listeners from the current hash then move to the next hash 
+- I can't get a list of events
+- Older version of browsers have memory leaks - they don't clean up the garbage data
+
+depending on which hash I am, run a method that removes the eventListeners
+
+if (location.hash === "/#users") {
+  unmountEvents({
+    target:
+    type:
+    handler:
+  })
+}
+have a method that gets 
+
+*/

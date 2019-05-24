@@ -1,4 +1,4 @@
-import store from "../store/store";
+import { store } from "../store/store";
 
 //a component that renders routes depending on user priviledge
 /*

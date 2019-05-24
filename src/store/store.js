@@ -1,4 +1,4 @@
-const store = {
+export const store = {
   getStore(store) {
     return JSON.parse(localStorage.getItem(store)) || [];
   },
@@ -15,5 +15,3 @@ const store = {
     sessionStorage.removeItem(sessionName);
   }
 };
-
-export default store;

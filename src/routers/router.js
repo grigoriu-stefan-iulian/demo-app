@@ -1,4 +1,3 @@
-import RouteBase from "./route-base";
 import loginHtml from "../pages/login.html";
 import logoutHtml from "../pages/logout.html";
 import registerHtml from "../pages/register.html";
@@ -9,7 +8,7 @@ import RegisterPage from "../components/register.page";
 import Dashboard from "../components/dashboard.page";
 import LogoutPage from "../components/logout.page";
 import UsersPage from "../components/users.page";
-import store from "../store/store";
+import { store } from "../store/store";
 
 const routes = {
   login() {
