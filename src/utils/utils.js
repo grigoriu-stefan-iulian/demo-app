@@ -3,31 +3,31 @@ import routes from "../routers/routes";
 
 export class RenderUsers {
   constructor() {
-    this.users = store.getStore();
+    this.users = store.getStore("users");
     this.table = document.getElementById("users-table");
-    this.render();
+    this.render(this.users);
   }
-  render() {
+  render(users) {
     this.table.innerHTML = "";
-    this.users.forEach((user, j) => {
-      let tableRow = document.createElement("tr");
-      Object.values(user).forEach((prop, i) => {
-        if (i === 5) {
-          const buttonContent = prop === false ? "Enable" : "Disable",
+    users.forEach((user, i) => {
+      const tableRow = document.createElement("tr");
+      Object.keys(user).forEach(prop => {
+        if (prop === "enabled") {
+          const buttonContent = user[prop] === false ? "Enable" : "Disable",
             enableButton = this.createButton(
               buttonContent,
               "enable-button",
               () => {
-                this.enableUser(this.users, user);
+                this.enableUser(users, user, prop);
               }
             ),
             deleteButton = this.createButton("Delete", "delete-button", () => {
-              this.deleteUser(this.users, j);
+              this.deleteUser(users, i);
             });
           tableRow.appendChild(enableButton);
           tableRow.appendChild(deleteButton);
         } else {
-          const tableDataEl = this.createTableData(prop);
+          const tableDataEl = this.createTableData(user[prop]);
           tableRow.appendChild(tableDataEl);
         }
       });
@@ -48,17 +48,17 @@ export class RenderUsers {
     tableData.innerHTML = el;
     return tableData;
   }
-  enableUser(users, user) {
-    user.enabled = !user.enabled;
-    this.updateStore(users);
+  enableUser(users, user, property) {
+    user[property] = !user[property];
+    this.updateStore("users", users);
   }
   deleteUser(users, index) {
     users.splice(index, 1);
-    this.updateStore(users);
+    this.updateStore("users", users);
   }
-  updateStore(users) {
-    store.setStore(users);
-    this.render();
+  updateStore(storeToUpdate, updates) {
+    store.setStore(storeToUpdate, updates);
+    this.render(updates);
   }
 }
 
@@ -84,10 +84,14 @@ export const generateDummyUsers = () => {
       enabled: false
     });
   }
-  store.setStore(users);
+  store.setStore("users", users);
 };
 
 export const addEvent = ({ type, target, handler } = event) => {
   const targetElement = document.getElementById(target);
   targetElement.addEventListener(type, handler);
+};
+
+export const removeEvent = () => {
+  return;
 };

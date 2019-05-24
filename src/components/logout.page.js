@@ -12,7 +12,7 @@ export default class LogoutPage extends RouteBase {
     });
   }
   handleLogout() {
-    store.removeSession();
-    location.hash = "#dashboard";
+    store.removeSession("user");
+    location.hash = "#login";
   }
 }

@@ -5,7 +5,7 @@ import store from "../store/store";
 export default class RegisterPage extends RouteBase {
   constructor(htmlToRender) {
     super(htmlToRender);
-    this.users = store.getStore();
+    this.users = store.getStore("users");
     this.errorEl = document.getElementById("registration-error");
     this.storeUsers = this.storeUsers.bind(this);
     addEvent({
@@ -21,19 +21,19 @@ export default class RegisterPage extends RouteBase {
       lName: e.target[1].value,
       email: e.target[2].value,
       password: e.target[3].value,
-      role: "Regular",
+      role: "regular",
       enabled: false
     };
-    this.emailValidation(user);
+    this.validateEmail(this.users, user);
   }
-  emailValidation(user) {
-    this.users.find(el => el.email === user.email) === undefined
-      ? this.userRegistration(user)
+  validateEmail(users, user) {
+    users.find(el => el.email === user.email) === undefined
+      ? this.registerUser(users, user)
       : (this.errorEl.innerHTML = "This email is already in use.");
   }
-  userRegistration(user) {
-    this.users.push(user);
+  registerUser(users, user) {
+    users.push(user);
     this.errorEl.innerHTML = "";
-    store.setStore(this.users);
+    store.setStore("users", users);
   }
 }

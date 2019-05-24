@@ -1,18 +1,18 @@
 const store = {
-  getStore() {
-    return JSON.parse(localStorage.getItem("users")) || [];
+  getStore(store) {
+    return JSON.parse(localStorage.getItem(store)) || [];
   },
-  setStore(users) {
-    localStorage.setItem("users", JSON.stringify(users));
+  setStore(storeName, store) {
+    localStorage.setItem(storeName, JSON.stringify(store));
   },
-  getSession() {
-    return JSON.parse(sessionStorage.getItem("user"));
+  getSession(session) {
+    return JSON.parse(sessionStorage.getItem(session));
   },
-  setSession(user) {
-    sessionStorage.setItem("user", JSON.stringify(user));
+  setSession(sessionName, session) {
+    sessionStorage.setItem(sessionName, JSON.stringify(session));
   },
-  removeSession() {
-    sessionStorage.removeItem("user");
+  removeSession(sessionName) {
+    sessionStorage.removeItem(sessionName);
   }
 };
 

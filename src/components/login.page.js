@@ -6,7 +6,7 @@ import store from "../store/store";
 export default class LoginPage extends RouteBase {
   constructor(htmlToRender) {
     super(htmlToRender);
-    this.users = [...admins, ...store.getStore()];
+    this.users = [...admins, ...store.getStore("users")];
     this.errorEl = document.getElementById("error-message");
     this.user = {};
     this.handleLogin = this.handleLogin.bind(this);
@@ -20,23 +20,23 @@ export default class LoginPage extends RouteBase {
     e.preventDefault();
     const loginEmail = e.target[0].value,
       loginPassword = e.target[1].value;
-    this.getUser(loginEmail, loginPassword);
-    this.validateUser();
+    this.getUser(this.users, loginEmail, loginPassword);
+    this.validateUser(this.user);
   }
-  getUser(email, password) {
-    this.user = this.users.find(
-      el => el.email === email && el.password === password
+  getUser(users, email, password) {
+    this.user = users.find(
+      user => user.email === email && user.password === password
     );
   }
-  validateUser() {
-    this.user === undefined
+  validateUser(user) {
+    user === undefined
       ? (this.errorEl.innerHTML = "Wrong Email or Password")
-      : this.user.enabled === false
+      : user.enabled === false
       ? (this.errorEl.innerHTML = "Your account is not enabled yet.")
-      : this.setLoginSession();
+      : this.setLoginSession(user);
   }
-  setLoginSession() {
-    store.setSession(this.user);
+  setLoginSession(user) {
+    store.setSession("user", user);
     location.hash = "#dashboard";
   }
 }

@@ -35,17 +35,17 @@ const routes = {
 
 const proxyHandler = {
   get(routes, prop) {
-    const session = store.getSession();
-    try {
-      if (session.role === "admin") {
-        return routes[prop];
-      } else if (session.role === "regular") {
-        return prop === "dashboard" || prop === "logout"
-          ? routes[prop]
-          : routes.dashboard;
-      }
-    } catch (err) {
+    const session = store.getSession("user");
+    if (session === null) {
       return prop === "login" || prop === "register"
+        ? routes[prop]
+        : routes.login;
+    }
+    if (session.role === "admin") {
+      return routes[prop];
+    }
+    if (session.role === "regular") {
+      return prop === "dashboard" || prop === "logout"
         ? routes[prop]
         : routes.dashboard;
     }
@@ -53,5 +53,4 @@ const proxyHandler = {
 };
 
 const proxyRoutes = new Proxy(routes, proxyHandler);
-
 export default proxyRoutes;
