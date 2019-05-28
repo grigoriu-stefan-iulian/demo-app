@@ -1,5 +1,5 @@
 import RouteBase from "../routers/route-base";
-import { addEvent } from "../utils/utils";
+import { addEvent, removeEvent } from "../utils/utils";
 import { store } from "../store/store";
 
 export default class RegisterPage extends RouteBase {
@@ -24,9 +24,9 @@ export default class RegisterPage extends RouteBase {
       role: "regular",
       enabled: false
     };
-    this.validateEmail(this.users, user);
+    this.handleRegistration(this.users, user);
   }
-  validateEmail(users, user) {
+  handleRegistration(users, user) {
     users.find(el => el.email === user.email) === undefined
       ? this.registerUser(users, user)
       : (this.errorEl.innerHTML = "This email is already in use.");
@@ -35,6 +35,11 @@ export default class RegisterPage extends RouteBase {
     users.push(user);
     this.errorEl.innerHTML = "";
     store.setStore("users", users);
+    removeEvent({
+      type: "submit",
+      target: "register-form",
+      handler: this.storeUsers
+    });
     location.hash = "/#login";
   }
 }

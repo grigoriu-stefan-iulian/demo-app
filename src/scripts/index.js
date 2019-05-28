@@ -1,6 +1,6 @@
 import "../styles/index.scss";
 import "normalize.css/normalize.css";
-import { RenderUsers } from "../utils/utils";
+import { renderUsers } from "../utils/render-users";
 import { router } from "../routers/router";
 import { generateDummyUsers } from "../utils/utils";
 
@@ -12,8 +12,8 @@ window.addEventListener("hashchange", () => {
 });
 window.addEventListener("storage", e => {
   if (e.key === "users" && location.hash === "/#users") {
-    new RenderUsers();
+    new renderUsers();
   }
 });
 
-//generateDummyUsers();
+// generateDummyUsers();

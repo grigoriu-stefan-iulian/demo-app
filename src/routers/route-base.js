@@ -14,7 +14,7 @@ export default class RouteBase {
 //component unmount -> will also remove event listeners
 /*
 
-onhashchange remove event listeners from the current hash then move to the next hash 
+before "onhashchange" remove event listeners from the current hash 
 - I can't get a list of events
 - Older version of browsers have memory leaks - they don't clean up the garbage data
 
@@ -27,6 +27,5 @@ if (location.hash === "/#users") {
     handler:
   })
 }
-have a method that gets 
 
 */

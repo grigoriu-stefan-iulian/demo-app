@@ -1,6 +1,6 @@
 import admins from "../data/admins.json";
 import RouteBase from "../routers/route-base";
-import { addEvent } from "../utils/utils";
+import { addEvent, removeEvent } from "../utils/utils";
 import { store } from "../store/store";
 
 export default class LoginPage extends RouteBase {
@@ -21,14 +21,14 @@ export default class LoginPage extends RouteBase {
     const loginEmail = e.target[0].value,
       loginPassword = e.target[1].value;
     this.getUser(this.users, loginEmail, loginPassword);
-    this.validateUser(this.user);
+    this.handleSession(this.user);
   }
   getUser(users, email, password) {
     this.user = users.find(
       user => user.email === email && user.password === password
     );
   }
-  validateUser(user) {
+  handleSession(user) {
     user === undefined
       ? (this.errorEl.innerHTML = "Wrong Email or Password")
       : user.enabled === false
@@ -37,6 +37,11 @@ export default class LoginPage extends RouteBase {
   }
   setLoginSession(user) {
     store.setSession("user", user);
-    location.hash = "#dashboard";
+    removeEvent({
+      type: "submit",
+      target: "login-submit",
+      handler: this.handleLogin
+    });
+   location.hash = "#dashboard";
   }
 }
