@@ -1,9 +1,6 @@
 import { store } from "../store/store";
 import { addEvent } from "./utils";
-import CaptureEvents from "./capture-events";
 import { captureEvents } from "./capture-events";
-
-//const capture = new CaptureEvents();
 
 export const renderUsers = () => {
   const users = store.getStore("users"),
@@ -43,7 +40,6 @@ const createButton = (content, eventHandler) => {
   button.classList.add("button", "button--users", content);
   button.addEventListener("click", eventHandler, false);
   captureEvents.collectEvent(button, "click", eventHandler);
-  console.log(captureEvents.events);
   tableDataEl.appendChild(button);
   return tableDataEl;
 };
@@ -71,15 +67,4 @@ const deleteUser = (users, index) => {
 const updateStore = (storeToUpdate, updates) => {
   store.setStore(storeToUpdate, updates);
   renderUsers();
-};
-
-const handleRemoveEvents = () => {
-  const enableButtons = document.getElementsByClassName("enable-button"),
-    deleteButtons = document.getElementsByClassName("delete-button");
-  enableButtons.forEach(button => {
-    button.removeEventListener("click", enableUser, false);
-  });
-  deleteButtons.forEach(button => {
-    button.removeEventListener("click", deleteUser, false);
-  });
 };
