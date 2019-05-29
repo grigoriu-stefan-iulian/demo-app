@@ -2,7 +2,7 @@ import { store } from "../store/store";
 
 export const generateDummyUsers = () => {
   const users = [];
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 100; i++) {
     users.push({
       fName: `John${i}`,
       lName: "Doe",

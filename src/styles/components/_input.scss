@@ -1,0 +1,18 @@
+.input {
+  background: $light-grey;
+  border: none;
+  display: inline-block;
+  margin: 0.5rem 0 2.2rem 0;
+  padding: 15px;
+  width: 100%;
+}
+
+.input:focus {
+  background-color: darken($light-grey, 10%);
+}
+
+.input--login {
+  border: 1px solid darken($light-grey, 15%);
+  margin: 8px 0;
+  padding: $s-size 20px;
+}

@@ -1,0 +1,36 @@
+.button {
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: $l-font;
+  font-weight: 300;
+  line-height: 1;
+  margin: 0.8rem 0;
+  padding: $s-size;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button--login {
+  background: $red;
+  width: 100%;
+}
+
+.button--register {
+  background-color: $blue;
+  width: 100%;
+}
+
+.button--link {
+  background: none;
+  padding: 0;
+}
+
+.button--remove {
+  background: #7e7b7b;
+}

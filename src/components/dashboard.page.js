@@ -18,7 +18,8 @@ export default class Dashboard extends RouteBase {
     const links = document.getElementById("links"),
       anchorEl = document.createElement("a");
     anchorEl.setAttribute("href", "/#users");
-    anchorEl.innerHTML = " users ";
+    anchorEl.classList.add("button", "button--link");
+    anchorEl.innerHTML = "Users";
     links.appendChild(anchorEl);
   }
 }

@@ -25,36 +25,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, "../src/index.html")
     })
-    // new HtmlWebpackPlugin({
-    //   template: Path.resolve(__dirname, "../src/pages/dashboard.html"),
-    //   inject: true,
-    //   chunks: ["all"],
-    //   filename: "dashboard.html"
-    // }),
-    /* new HtmlWebpackPlugin({
-      template: Path.resolve(__dirname, "../src/pages/login.html"),
-      inject: true,
-      chunks: ["all"],
-      filename: "login.html"
-    }),*/
-    // new HtmlWebpackPlugin({
-    //   template: Path.resolve(__dirname, "../src/pages/logout.html"),
-    //   inject: true,
-    //   chunks: ["all"],
-    //   filename: "logout.html"
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: Path.resolve(__dirname, "../src/pages/register.html"),
-    //   inject: true,
-    //   chunks: ["all"],
-    //   filename: "register.html"
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: Path.resolve(__dirname, "../src/pages/users.html"),
-    //   inject: true,
-    //   chunks: ["all"],
-    //   filename: "users.html"
-    // })
   ],
 
   resolve: {

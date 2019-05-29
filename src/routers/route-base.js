@@ -6,26 +6,4 @@ export default class RouteBase {
   mount(htmlComponent) {
     this.container.innerHTML = htmlComponent;
   }
-  unmount() {
-    this.container.innerHTML = "";
-  }
 }
-
-//component unmount -> will also remove event listeners
-/*
-
-before "onhashchange" remove event listeners from the current hash 
-- I can't get a list of events
-- Older version of browsers have memory leaks - they don't clean up the garbage data
-
-depending on which hash I am, run a method that removes the eventListeners
-
-if (location.hash === "/#users") {
-  unmountEvents({
-    target:
-    type:
-    handler:
-  })
-}
-
-*/

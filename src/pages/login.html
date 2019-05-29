@@ -1,17 +1,33 @@
-<a href="/#register"> register </a>
-<form action="" id="login-submit">
-  <span id="error-message"></span>
-  <label for="uname"><b>Email</b></label
-  ><input
-    type="text"
-    placeholder="Enter valid email"
-    name="uname"
-    required
-  /><label for="psw"><b>Password</b></label
-  ><input
-    type="password"
-    placeholder="Enter Password"
-    name="psw"
-    required
-  /><button type="submit">Login</button>
-</form>
+<header class="header">
+  <div class="header__content content-container">
+    <a class="button button--link" href="/#register">Register</a>
+  </div>
+</header>
+<div class="page-header">
+  <div class="content-container">
+    <h1 class="page-header__title">Login</h1>
+    <p>Please login using you email and password.</p>
+  </div>
+</div>
+<div class="content-container">
+  <form action="" id="login-submit">
+    <label for="uname"><b>Email</b></label>
+    <input
+      class="input input--login"
+      type="text"
+      placeholder="Enter valid email"
+      name="uname"
+      required
+    />
+    <label for="psw"><b>Password</b></label>
+    <input
+      class="input input--login"
+      type="password"
+      placeholder="Enter Password"
+      name="psw"
+      required
+    />
+    <p id="error-message" class="form__error"></p>
+    <button type="submit" class="button button--login">Login</button>
+  </form>
+</div>

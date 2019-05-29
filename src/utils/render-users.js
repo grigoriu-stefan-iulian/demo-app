@@ -1,14 +1,14 @@
 import { store } from "../store/store";
 import { addEvent } from "./utils";
+import CaptureEvents from "./capture-events";
+import { captureEvents } from "./capture-events";
+
+//const capture = new CaptureEvents();
 
 export const renderUsers = () => {
-  addEvent({
-    target: "dashboard-button",
-    handler: handleRemoveEvents,
-    type: "click"
-  });
   const users = store.getStore("users"),
     table = document.getElementById("users-table");
+  captureEvents.events = [];
   table.innerHTML = "";
   users.forEach((user, i) => {
     const tableRow = document.createElement("tr");
@@ -17,12 +17,12 @@ export const renderUsers = () => {
         const buttonContent = user[prop] === false ? "Enable" : "Disable",
           enableButton = createButton(
             buttonContent,
-            "enable-button",
+            "button--login",
             enableUser(users, user, prop)
           ),
           deleteButton = createButton(
             "Delete",
-            "delete-button",
+            "button--remove",
             deleteUser(users, i)
           );
         tableRow.appendChild(enableButton);
@@ -34,6 +34,11 @@ export const renderUsers = () => {
     });
     table.appendChild(tableRow);
   });
+  addEvent({
+    target: "dashboard-button",
+    handler: () => captureEvents.removeEvents(),
+    type: "click"
+  });
 };
 
 const createButton = (content, classes, eventHandler) => {
@@ -41,7 +46,9 @@ const createButton = (content, classes, eventHandler) => {
     tableDataEl = createTableData("");
   button.innerHTML = content;
   button.classList.add("button", classes);
-  button.addEventListener("click", eventHandler);
+  button.addEventListener("click", eventHandler, false);
+  captureEvents.collectEvent(button, "click", eventHandler);
+  console.log(captureEvents.events);
   tableDataEl.appendChild(button);
   return tableDataEl;
 };
@@ -75,12 +82,9 @@ const handleRemoveEvents = () => {
   const enableButtons = document.getElementsByClassName("enable-button"),
     deleteButtons = document.getElementsByClassName("delete-button");
   enableButtons.forEach(button => {
-    button.removeEventListener("click", enableUser);
+    button.removeEventListener("click", enableUser, false);
   });
   deleteButtons.forEach(button => {
-    button.removeEventListener("click", deleteUser);
+    button.removeEventListener("click", deleteUser, false);
   });
 };
-
-// clasa in care sa adaug event-urile folosite pe pagina mea si cand parasesc pagina, dau remove la toate eventurile
-// un aray the obiecte {type: "", handler: "", target: ""}

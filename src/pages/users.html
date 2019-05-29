@@ -1,15 +1,28 @@
-<button id="dashboard-button"> dashboard </button>
-<a href="/#logout" id="logout-button"> logout </a>
-<h1>Demo App Users</h1>
-<table>
-  <thead>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Role</th>
-    <th>Status</th>
-    <th>Remove</th>
-  </thead>
-  <tbody id="users-table"></tbody>
-</table>
+<header class="header">
+  <div class="header__content content-container">
+    <!-- 
+          <button id="dashboard-button">dashboard</button>
+    -->
+    <a class="button button--link" href="/#dashboard" id="dashboard-button">Dashboard</a>
+    <a class="button button--link" href="/#logout" id="logout-button">Logout</a>
+  </div>
+</header>
+<div class="page-header">
+  <div class="content-container">
+    <h1 class="page-header__title">Demo App Users</h1>
+  </div>
+</div>
+<div class="content-container">
+  <table class="table">
+    <thead>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Remove</th>
+    </thead>
+    <tbody id="users-table"></tbody>
+  </table>
+</div>

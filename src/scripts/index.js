@@ -12,7 +12,7 @@ window.addEventListener("hashchange", () => {
 });
 window.addEventListener("storage", e => {
   if (e.key === "users" && location.hash === "/#users") {
-    new renderUsers();
+    renderUsers();
   }
 });
 
