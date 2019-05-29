@@ -17,14 +17,9 @@ export const renderUsers = () => {
         const buttonContent = user[prop] === false ? "Enable" : "Disable",
           enableButton = createButton(
             buttonContent,
-            "button--login",
             enableUser(users, user, prop)
           ),
-          deleteButton = createButton(
-            "Delete",
-            "button--remove",
-            deleteUser(users, i)
-          );
+          deleteButton = createButton("Delete", deleteUser(users, i));
         tableRow.appendChild(enableButton);
         tableRow.appendChild(deleteButton);
       } else {
@@ -41,11 +36,11 @@ export const renderUsers = () => {
   });
 };
 
-const createButton = (content, classes, eventHandler) => {
+const createButton = (content, eventHandler) => {
   const button = document.createElement("button"),
     tableDataEl = createTableData("");
   button.innerHTML = content;
-  button.classList.add("button", classes);
+  button.classList.add("button", "button--users", content);
   button.addEventListener("click", eventHandler, false);
   captureEvents.collectEvent(button, "click", eventHandler);
   console.log(captureEvents.events);

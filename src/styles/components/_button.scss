@@ -8,7 +8,6 @@
   line-height: 1;
   margin: 0.8rem 0;
   padding: $s-size;
-  text-decoration: none;
   transition: 0.3s;
 }
 
@@ -18,19 +17,33 @@
 
 .button--login {
   background: $red;
-  width: 100%;
 }
 
 .button--register {
   background-color: $blue;
-  width: 100%;
 }
 
 .button--link {
   background: none;
+  font-size: $l-font;
   padding: 0;
+  text-decoration: none;
 }
 
-.button--remove {
+.button--users {
+  font-size: $s-font;
+  padding: $xs-size;
+  width: 100%;
+}
+
+.Enable {
+  background: $blue;
+}
+
+.Disable {
+  background: $red;
+}
+
+.Delete {
   background: #7e7b7b;
 }

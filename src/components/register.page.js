@@ -32,7 +32,7 @@ export default class RegisterPage extends RouteBase {
       : (this.errorEl.innerHTML = "This email is already in use.");
   }
   registerUser(users, user) {
-    users.push(user);
+    users.unshift(user);
     this.errorEl.innerHTML = "";
     store.setStore("users", users);
     removeEvent({
