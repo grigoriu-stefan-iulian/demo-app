@@ -1,19 +1,19 @@
 import { store } from "../store/store";
 import { addEvent } from "./utils";
-import { captureEvents } from "./capture-events";
+import { handleEvents } from "./handle-events";
 
 export const renderUsers = () => {
   const users = store.getStore("users"),
     table = document.getElementById("users-table");
-  captureEvents.events = [];
+  handleEvents.events = [];
   table.innerHTML = "";
   users.forEach((user, i) => {
     const tableRow = document.createElement("tr");
     Object.keys(user).forEach(prop => {
       if (prop === "enabled") {
-        const buttonContent = user[prop] === false ? "Enable" : "Disable",
+        const enableButtonContent = user[prop] === false ? "Enable" : "Disable",
           enableButton = createButton(
-            buttonContent,
+            enableButtonContent,
             enableUser(users, user, prop)
           ),
           deleteButton = createButton("Delete", deleteUser(users, i));
@@ -28,7 +28,7 @@ export const renderUsers = () => {
   });
   addEvent({
     target: "dashboard-button",
-    handler: () => captureEvents.removeEvents(),
+    handler: () => handleEvents.removeEvents(),
     type: "click"
   });
 };
@@ -39,7 +39,7 @@ const createButton = (content, eventHandler) => {
   button.innerHTML = content;
   button.classList.add("button", "button--users", content);
   button.addEventListener("click", eventHandler, false);
-  captureEvents.collectEvent(button, "click", eventHandler);
+  handleEvents.collectEvent(button, "click", eventHandler);
   tableDataEl.appendChild(button);
   return tableDataEl;
 };

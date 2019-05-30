@@ -1,4 +1,4 @@
-export const captureEvents = {
+export const handleEvents = {
   events: [],
   collectEvent(target, type, handler) {
     this.events.push({
@@ -13,5 +13,3 @@ export const captureEvents = {
     });
   }
 };
-// clasa/engine in care sa adaug event-urile folosite pe pagina mea si cand parasesc pagina, dau remove la toate eventurile
-// un aray the obiecte {type: "", handler: "", target: ""}

@@ -5,11 +5,10 @@ export default class Dashboard extends RouteBase {
   constructor(htmlPage) {
     super(htmlPage);
     this.user = store.getSession("user");
-    this.nameContainer = document.getElementById("name-container");
-    this.nameContainer.innerHTML = this.user.fName;
-    this.checkIfAdmin();
+    document.getElementById("name-container").innerHTML = this.user.fName;
+    this.handleAdmins();
   }
-  checkIfAdmin() {
+  handleAdmins() {
     if (this.user.role === "admin") {
       this.createUsersLink();
     }

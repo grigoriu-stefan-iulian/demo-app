@@ -2,8 +2,8 @@
   background: $light-grey;
   border: none;
   display: inline-block;
-  margin: 0.5rem 0 2.2rem 0;
-  padding: 15px;
+  margin-bottom: 2.2rem;
+  padding: $s-size 2rem;
   width: 100%;
 }
 
@@ -13,6 +13,5 @@
 
 .input--login {
   border: 1px solid darken($light-grey, 15%);
-  margin: 8px 0;
-  padding: $s-size 20px;
+  margin: 0.8rem 0;
 }
