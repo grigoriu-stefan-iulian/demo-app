@@ -9,41 +9,46 @@
   margin: 0.8rem 0;
   padding: $s-size;
   transition: 0.3s;
-}
+  &:hover {
+    opacity: 0.8;
+  }
+  &--login {
+    @extend .button;
+    background: $red;
+  }
 
-.button:hover {
-  opacity: 0.8;
-}
+  &--register {
+    @extend .button;
+    background-color: $blue;
+  }
 
-.button--login {
-  background: $red;
-}
+  &--link {
+    @extend .button;
+    background: none;
+    font-size: $l-font;
+    padding: 0;
+    text-decoration: none;
+  }
 
-.button--register {
-  background-color: $blue;
-}
+  &--users {
+    @extend .button;
+    font-size: $s-font;
+    padding: $xs-size;
+    width: 100%;
+  }
 
-.button--link {
-  background: none;
-  font-size: $l-font;
-  padding: 0;
-  text-decoration: none;
-}
+  &--enable {
+    @extend .button--users;
+    background: $blue;
+  }
 
-.button--users {
-  font-size: $s-font;
-  padding: $xs-size;
-  width: 100%;
-}
+  &--disable {
+    @extend .button--users;
+    background: $red;
+  }
 
-.Enable {
-  background: $blue;
-}
-
-.Disable {
-  background: $red;
-}
-
-.Delete {
-  background: #7e7b7b;
+  &--delete {
+    @extend .button--users;
+    background: #7e7b7b;
+  }
 }

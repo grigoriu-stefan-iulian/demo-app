@@ -42,6 +42,6 @@ export default class LoginPage extends RouteBase {
       target: "login-submit",
       handler: this.handleLogin
     });
-   location.hash = "#dashboard";
+    location.hash = "#dashboard";
   }
 }

@@ -37,7 +37,7 @@ const createButton = (content, eventHandler) => {
   const button = document.createElement("button"),
     tableDataEl = createTableData("");
   button.innerHTML = content;
-  button.classList.add("button", "button--users", content);
+  button.classList.add(`button--${content.toLowerCase()}`);
   button.addEventListener("click", eventHandler, false);
   handleEvents.collectEvent(button, "click", eventHandler);
   tableDataEl.appendChild(button);
