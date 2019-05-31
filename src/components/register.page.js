@@ -1,21 +1,21 @@
 import RouteBase from "../routers/route-base";
 import { addEvent, removeEvent } from "../utils/utils";
 import { store } from "../store/store";
+import { handlePageChange } from "../utils/handle-page-change";
 
 export default class RegisterPage extends RouteBase {
   constructor(htmlToRender) {
     super(htmlToRender);
     this.users = store.getStore("users");
     this.errorEl = document.getElementById("registration-error");
-    this.storeUsers = this.storeUsers.bind(this);
+    this.handleRegistration = this.handleRegistration.bind(this);
     addEvent({
       type: "submit",
       target: "register-form",
-      handler: this.storeUsers
+      handler: this.handleRegistration
     });
   }
-  storeUsers(e) {
-    e.preventDefault();
+  handleRegistration(e) {
     const user = {
       fName: e.target[0].value,
       lName: e.target[1].value,
@@ -24,9 +24,10 @@ export default class RegisterPage extends RouteBase {
       role: "regular",
       enabled: false
     };
-    this.handleRegistration(this.users, user);
+    this.validateUser(this.users, user);
+    e.preventDefault();
   }
-  handleRegistration(users, user) {
+  validateUser(users, user) {
     users.find(el => el.email === user.email) === undefined
       ? this.registerUser(users, user)
       : (this.errorEl.innerHTML = "This email is already in use.");
@@ -35,11 +36,11 @@ export default class RegisterPage extends RouteBase {
     users.unshift(user);
     this.errorEl.innerHTML = "";
     store.setStore("users", users);
-    removeEvent({
+    handlePageChange({
       type: "submit",
       target: "register-form",
-      handler: this.storeUsers
+      handler: this.handleRegistration,
+      route: "#login"
     });
-    location.hash = "/#login";
   }
 }

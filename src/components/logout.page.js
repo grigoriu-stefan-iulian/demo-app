@@ -1,10 +1,12 @@
 import RouteBase from "../routers/route-base";
-import { addEvent, removeEvent } from "../utils/utils";
+import { addEvent } from "../utils/utils";
 import { store } from "../store/store";
+import { handlePageChange } from "../utils/handle-page-change";
 
 export default class LogoutPage extends RouteBase {
   constructor(htmlPage) {
     super(htmlPage);
+    this.handleLogout = this.handleLogout.bind(this);
     addEvent({
       target: "logout-button",
       handler: this.handleLogout,
@@ -13,11 +15,11 @@ export default class LogoutPage extends RouteBase {
   }
   handleLogout() {
     store.removeSession("user");
-    removeEvent({
+    handlePageChange({
+      type: "click",
       target: "logout-button",
       handler: this.handleLogout,
-      type: "click"
+      route: "#login"
     });
-    location.hash = "#login";
   }
 }

@@ -6,9 +6,9 @@ export default class Dashboard extends RouteBase {
     super(htmlPage);
     this.user = store.getSession("user");
     document.getElementById("name-container").innerHTML = this.user.fName;
-    this.handleAdmins();
+    this.onAdminUsers();
   }
-  handleAdmins() {
+  onAdminUsers() {
     if (this.user.role === "admin") {
       this.createUsersLink();
     }

@@ -1,7 +1,8 @@
 import admins from "../data/admins.json";
 import RouteBase from "../routers/route-base";
-import { addEvent, removeEvent } from "../utils/utils";
+import { addEvent } from "../utils/utils";
 import { store } from "../store/store";
+import { handlePageChange } from "../utils/handle-page-change";
 
 export default class LoginPage extends RouteBase {
   constructor(htmlToRender) {
@@ -32,16 +33,16 @@ export default class LoginPage extends RouteBase {
     user === undefined
       ? (this.errorEl.innerHTML = "Wrong Email or Password")
       : user.enabled === false
-      ? (this.errorEl.innerHTML = "Your account is not enabled yet.")
-      : this.setLoginSession(user);
+        ? (this.errorEl.innerHTML = "Your account is not enabled yet.")
+        : this.setLoginSession(user);
   }
   setLoginSession(user) {
     store.setSession("user", user);
-    removeEvent({
+    handlePageChange({
       type: "submit",
       target: "login-submit",
-      handler: this.handleLogin
+      handler: this.handleLogin,
+      route: "#dashboard"
     });
-    location.hash = "#dashboard";
   }
 }
