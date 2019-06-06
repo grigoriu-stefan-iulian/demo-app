@@ -1,4 +1,4 @@
-.button {
+%button-placeholder {
   border: none;
   color: white;
   cursor: pointer;
@@ -9,6 +9,10 @@
   margin: 0.8rem 0;
   padding: $s-size;
   transition: 0.3s;
+}
+
+.button {
+  @extend %button-placeholder;
   &:hover {
     opacity: 0.8;
   }
@@ -16,10 +20,12 @@
     @extend .button;
     background: $red;
   }
+
   &--register {
     @extend .button;
     background-color: $blue;
   }
+
   &--link {
     @extend .button;
     background: none;
@@ -27,20 +33,24 @@
     padding: 0;
     text-decoration: none;
   }
+
   &--users {
     @extend .button;
     font-size: $s-font;
     padding: $xs-size;
     width: 100%;
   }
+
   &--enable {
     @extend .button--users;
     background: $blue;
   }
+
   &--disable {
     @extend .button--users;
     background: $red;
   }
+
   &--delete {
     @extend .button--users;
     background: #7e7b7b;

@@ -1,23 +1,23 @@
 .header {
   background: $dark-blue;
-}
 
-.header__content {
-  display: flex;
-  justify-content: space-between;
-  padding: $m-size;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    padding: $m-size;
+  }
 }
 
 .page-header {
   background: $light-grey;
   margin-bottom: $m-size;
   padding: $m-size 0;
-}
 
-.page-header__title {
-  font-weight: 300;
-  margin: 0;
-  span {
-    font-weight: bold;
+  &__title {
+    font-weight: 300;
+    margin: 0;
+    span {
+      font-weight: bold;
+    }
   }
 }

@@ -1,13 +1,22 @@
 .input {
   background: $light-grey;
   border: none;
+  border-bottom: 3px solid transparent;
   display: inline-block;
+  font-family: inherit;
   margin-bottom: 2.2rem;
   padding: $s-size 2rem;
   width: 100%;
-  
+  transition: border-bottom .3s;
+
   &:focus {
     background-color: darken($light-grey, 10%);
+    box-shadow: 0 1rem 2rem rgba($blue, 0.1);
+    border-bottom: 3px solid $blue;
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid orangered;
   }
 
   &--login {

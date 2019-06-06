@@ -1,5 +1,9 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -14,4 +18,9 @@ body {
 
 input:focus {
   outline: none;
+}
+
+::selection {
+  background-color: $blue;
+  color: white;
 }

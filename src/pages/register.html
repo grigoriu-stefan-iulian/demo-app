@@ -10,7 +10,7 @@
   </div>
 </div>
 <div class="content-container">
-  <form action="" id="register-form" onsubmit="">
+  <form action="#" id="register-form">
     <label for="fname"><b>First Name</b></label>
     <input
       class="input"
@@ -33,30 +33,36 @@
     <span id="registration-error" class="form__error"></span>
     <input
       class="input"
-      type="text"
+      type="email"
       placeholder="Enter Email"
       name="email"
       required
     />
 
-    <label for="psw"><b>Password</b></label>
+    <label for="password"><b>Password</b></label>
     <input
+      id="password"
       class="input"
+      name="password"
+      type="password"
+      pattern="^\S{6,}$"
+      onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;"
       type="password"
       placeholder="Enter Password"
-      name="psw"
       required
     />
-
-    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <label for="password_two"><b>Repeat Password</b></label>
     <input
+      id="password_two"
       class="input"
+      name="password_two"
+      type="password"
+      pattern="^\S{6,}$"
+      onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
       type="password"
       placeholder="Repeat Password"
-      name="psw-repeat"
       required
     />
-
     <button type="submit" class="button--register">Register</button>
     <p>*Your account will be available after an admin enables it.</p>
   </form>
